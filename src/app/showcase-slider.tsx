@@ -52,7 +52,7 @@ export default function ShowcaseSlider({ slides, imgBase }: { slides: Slide[]; i
         <ChevronRight className="h-7 w-7" strokeWidth={3} />
       </button>
 
-      <p className="mt-4 text-center text-sm font-bold text-white/90">
+      <p className="mt-4 text-center text-sm font-bold text-sp-ink-soft">
         {index + 1} / {slides.length}
       </p>
     </div>

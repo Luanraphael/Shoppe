@@ -431,7 +431,7 @@ export default function ShopeePage() {
             <ShowcaseSlider slides={SHOWCASE} imgBase={IMG} />
           </div>
 
-          <Container className="mt-14">
+          <Container className="mt-[104px] sm:mt-[140px] lg:mt-[164px]">
             <SectionTitle tone="light">
               With the <Mark on="orange">{MAIN_PRODUCT}</Mark> you&apos;ll get access to:
             </SectionTitle>

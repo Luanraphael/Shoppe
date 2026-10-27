@@ -178,9 +178,9 @@ img {
   --sp-o: calc(48px + 52vw + (100vw - 32px) * 0.92);
 }
 /* Inside: corte atrás dos slides. */
+/* Inside: a página da cartilha é branca, então a onda só começa abaixo dela e do contador. */
 .sp-slab--inside {
-  --sp-w: 145px;
-  --sp-o: calc(150px + (100vw - 32px) * 1.416);
+  --sp-cut: calc(308px + (100vw - 32px) * 1.416);
 }
 /* Why: headline mais longa, corte mais baixo. */
 .sp-slab--why {
@@ -205,8 +205,7 @@ img {
     --sp-o: calc(395px + (min(100vw, 680px) - 48px) * 0.92);
   }
   .sp-slab--inside {
-    --sp-w: 165px;
-    --sp-o: calc(170px + (min(100vw, 600px) - 100px) * 1.416);
+    --sp-cut: calc(360px + (min(100vw, 600px) - 100px) * 1.416);
   }
   .sp-slab--why {
     --sp-w: 285px;
@@ -215,6 +214,11 @@ img {
   .sp-slab--offer {
     --sp-w: 160px;
     --sp-o: calc(150px + (min(100vw, 680px) - 128px) * 0.92);
+  }
+}
+@media (min-width: 1024px) {
+  .sp-slab--inside {
+    --sp-cut: calc(384px + (min(100vw, 600px) - 100px) * 1.416);
   }
 }
 
