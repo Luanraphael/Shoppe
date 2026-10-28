@@ -7,7 +7,15 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 type Slide = { title: string; img: string };
 
 /** Slides das páginas internas: uma por vez, em largura total, com setas e arrasto. */
-export default function ShowcaseSlider({ slides, imgBase }: { slides: Slide[]; imgBase: string }) {
+export default function ShowcaseSlider({
+  slides,
+  imgBase,
+  altPrefix,
+}: {
+  slides: Slide[];
+  imgBase: string;
+  altPrefix: string;
+}) {
   const trackRef = useRef<HTMLDivElement>(null);
   const [index, setIndex] = useState(0);
 
@@ -31,7 +39,7 @@ export default function ShowcaseSlider({ slides, imgBase }: { slides: Slide[]; i
           <div key={s.img} className="showcase-slide">
             <Image
               src={`${imgBase}/${s.img}`}
-              alt={`Página da cartilha: ${s.title}`}
+              alt={`${altPrefix}: ${s.title}`}
               width={1054}
               height={1492}
               sizes="(min-width: 640px) 500px, 100vw"

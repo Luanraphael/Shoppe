@@ -54,13 +54,39 @@ const TRUST_BADGES = [
 // Páginas reais da cartilha (em pé), mostradas nos slides "Take a look inside".
 const SHOWCASE = [
   { title: "Por que vender na Shopee", img: "veja-01-por-que-vender.png" },
-  { title: "Tarifas e lucro na Shopee", img: "veja-02-tarifas-lucro.png" },
-  { title: "Lucro de um produto real", img: "veja-03-lucro-produto-real.png" },
-  { title: "Como calcular tarifas e lucro", img: "veja-04-tarifas-e-lucro.png" },
-  { title: "Infográfico das tarifas da Shopee", img: "veja-05-infografico-tarifas.png" },
-  { title: "O anúncio é sua vitrine na Shopee", img: "veja-06-criar-anuncios.png" },
-  { title: "Atributos certos no anúncio", img: "veja-07-atributos-certos.png" },
-  { title: "Preço e variações do anúncio", img: "veja-08-preco-variacoes.png" },
+  { title: "A regra dos 450 pedidos", img: "veja-02-regra-450-pedidos.png" },
+  { title: "Vamos fazer a conta de um produto real", img: "veja-03-lucro-produto-real.png" },
+  { title: "Um preço maior pode deixar menos dinheiro", img: "veja-04-preco-maior.png" },
+  { title: "O anúncio é sua vitrine na Shopee", img: "veja-05-criar-anuncios.png" },
+  { title: "Categoria, marca e atributos certos", img: "veja-06-atributos-certos.png" },
+  { title: "Preço, estoque e variações", img: "veja-07-preco-variacoes.png" },
+  { title: "Passo a passo para publicar", img: "veja-08-passo-a-passo-publicar.png" },
+  { title: "Datas duplas, afiliados e vídeos", img: "veja-09-datas-duplas-videos.png" },
+];
+
+// Capas das lições, mostradas nos slides "Módulos".
+const MODULES = [
+  { title: "Lição 01: Antes de começar", img: "modulo-01-antes-de-comecar.png" },
+  { title: "Lição 03: Sua conta, CPF ou CNPJ", img: "modulo-03-cpf-ou-cnpj.png" },
+  { title: "Lição 04: Como encontrar produtos com potencial de venda", img: "modulo-04-produtos.png" },
+  { title: "Lição 06: Tarifas, preços e lucro", img: "modulo-06-tarifas-lucro.png" },
+  { title: "Lição 07: Criando um anúncio completo na Shopee", img: "modulo-07-anuncio-completo.png" },
+  { title: "Lição 08: O plano para conquistar as primeiras vendas", img: "modulo-08-primeiras-vendas.png" },
+  { title: "Lição 09: Cupons, campanhas e ferramentas de promoção", img: "modulo-09-promocao.png" },
+  { title: "Lição 10: Reputação, avaliações e atendimento", img: "modulo-10-reputacao.png" },
+];
+
+// Páginas de exercícios do fim de cada lição, mostradas nos slides "Deveres de Casa".
+const HOMEWORK = [
+  { title: "Dever de casa da Lição 01", img: "dever-01-antes-de-comecar.png" },
+  { title: "Dever de casa da Lição 03", img: "dever-03-abertura-loja.png" },
+  { title: "Dever de casa da Lição 04", img: "dever-04-pesquisa-produtos.png" },
+  { title: "Dever de casa da Lição 05", img: "dever-05-fornecedores.png" },
+  { title: "Dever de casa da Lição 06", img: "dever-06-tarifas-lucro.png" },
+  { title: "Dever de casa da Lição 07", img: "dever-07-anuncio.png" },
+  { title: "Dever de casa da Lição 08", img: "dever-08-primeiras-vendas.png" },
+  { title: "Dever de casa da Lição 09", img: "dever-09-promocao.png" },
+  { title: "Dever de casa da Lição 10", img: "dever-10-reputacao.png" },
 ];
 
 const BONUSES = [
@@ -420,18 +446,44 @@ export default function ShopeePage() {
 
         {/* 4 · Slides + O que vem + 5 · Data + 6 · Bônus */}
         <ShopeeSlab id="inside" variant="inside">
-          <Container>
-            <SectionTitle tone="dark">
-              Take a look <Mark on="light">inside</Mark>
-            </SectionTitle>
-            <p className="mt-3 text-center text-lg font-bold text-sp-ink-soft">Swipe to see more pages →</p>
-          </Container>
+          {/* Bloco branco dos 3 carrosséis; a onda laranja fica presa no fim dele. */}
+          <div className="sp-inside-top -mt-14 pt-14">
+            <Container>
+              <SectionTitle tone="dark">
+                Take a look <Mark on="light">inside</Mark>
+              </SectionTitle>
+              <p className="mt-3 text-center text-lg font-bold text-sp-ink-soft">Swipe to see more pages →</p>
+            </Container>
+            <div className="mx-auto mt-8 w-full max-w-[600px] px-1.5 sm:px-10">
+              <ShowcaseSlider slides={SHOWCASE} imgBase={IMG} altPrefix="Página da cartilha" />
+            </div>
 
-          <div className="mx-auto mt-8 w-full max-w-[600px] px-1.5 sm:px-10">
-            <ShowcaseSlider slides={SHOWCASE} imgBase={IMG} />
+            <Container className="mt-16">
+              <SectionTitle tone="dark">
+                <Mark on="light">Módulos</Mark>
+              </SectionTitle>
+              <p className="mt-3 text-center text-lg font-bold text-sp-ink-soft">Arraste para ver todos os módulos →</p>
+            </Container>
+            <div className="mx-auto mt-8 w-full max-w-[600px] px-1.5 sm:px-10">
+              <ShowcaseSlider slides={MODULES} imgBase={IMG} altPrefix="Capa do módulo" />
+            </div>
+
+            <Container className="mt-16">
+              <SectionTitle tone="dark">
+                <Mark on="light">Deveres de Casa</Mark> ao Final de Cada Módulo
+              </SectionTitle>
+              <p className="sp-note mx-auto mt-6 max-w-[560px]">
+                Ao terminar cada módulo, você coloca em prática o que acabou de aprender. São exercícios, checklists e
+                contas prontas para preencher, que transformam a leitura em ação na sua loja.
+              </p>
+              <p className="mt-6 text-center text-lg font-bold text-sp-ink-soft">Arraste para ver os deveres →</p>
+            </Container>
+            <div className="mx-auto mt-8 w-full max-w-[600px] px-1.5 sm:px-10">
+              <ShowcaseSlider slides={HOMEWORK} imgBase={IMG} altPrefix="Página de exercícios" />
+            </div>
           </div>
 
-          <Container className="mt-[104px] sm:mt-[140px] lg:mt-[164px]">
+          <Container className="mt-10 sm:mt-12">
             <SectionTitle tone="light">
               With the <Mark on="orange">{MAIN_PRODUCT}</Mark> you&apos;ll get access to:
             </SectionTitle>

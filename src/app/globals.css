@@ -177,10 +177,28 @@ img {
   --sp-w: calc(34px + 52vw);
   --sp-o: calc(48px + 52vw + (100vw - 32px) * 0.92);
 }
-/* Inside: corte atrás dos slides. */
-/* Inside: a página da cartilha é branca, então a onda só começa abaixo dela e do contador. */
+/*
+ * Inside: as páginas da cartilha são brancas, então os 3 carrosséis ficam num bloco
+ * branco e a onda fica presa no fim dele, descendo sozinha conforme o conteúdo cresce.
+ */
 .sp-slab--inside {
-  --sp-cut: calc(308px + (100vw - 32px) * 1.416);
+  background: var(--sp-500);
+}
+.sp-inside-top {
+  padding-bottom: calc(var(--sp-wave-h) + 24px);
+  background: var(--sp-wave) 0 calc(100% + 1px) / 100% var(--sp-wave-h) no-repeat, var(--sp-white);
+}
+/* Caixa de descrição: laranja com texto preto e o mesmo carimbo deslocado dos grifos. */
+.sp-note {
+  padding: 1rem 1.25rem;
+  border-radius: 14px;
+  background: var(--sp-500);
+  color: var(--sp-ink);
+  font-size: 1.0625rem;
+  font-weight: 700;
+  line-height: 1.5;
+  text-align: center;
+  box-shadow: 5px 5px 0 var(--sp-ink);
 }
 /* Why: headline mais longa, corte mais baixo. */
 .sp-slab--why {
@@ -204,9 +222,6 @@ img {
     --sp-w: 395px;
     --sp-o: calc(395px + (min(100vw, 680px) - 48px) * 0.92);
   }
-  .sp-slab--inside {
-    --sp-cut: calc(360px + (min(100vw, 600px) - 100px) * 1.416);
-  }
   .sp-slab--why {
     --sp-w: 285px;
     --sp-o: calc(290px + (min(100vw, 680px) - 48px) * 0.92);
@@ -214,11 +229,6 @@ img {
   .sp-slab--offer {
     --sp-w: 160px;
     --sp-o: calc(150px + (min(100vw, 680px) - 128px) * 0.92);
-  }
-}
-@media (min-width: 1024px) {
-  .sp-slab--inside {
-    --sp-cut: calc(384px + (min(100vw, 600px) - 100px) * 1.416);
   }
 }
 
@@ -488,6 +498,7 @@ img {
   align-items: center;
   justify-content: center;
   border-radius: 9999px;
+  border: 2px solid var(--sp-white);
   background: var(--sp-500);
   color: var(--sp-white);
   box-shadow: 0.12em 0.12em 0 var(--sp-ink), 0 6px 16px rgba(9, 13, 22, 0.25);
