@@ -26,6 +26,7 @@
   /* Verde dos botões e dos checks (cor do botão de referência). */
   --sp-go: #0b8601;
   --sp-go-dark: #097001;
+  --sp-red: #d91c1c;
 
   --clay-success: #10b981;
   --clay-success-dark: #059669;
@@ -252,6 +253,46 @@ img {
 }
 
 /* ---------- Botão ---------- */
+
+/* Âncora de preço do hero: cartão branco com o carimbo preto dos grifos. */
+.sp-price-tag {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  padding: 0.9rem 2.25rem 1rem;
+  border-radius: 18px;
+  background: var(--sp-white);
+  color: var(--sp-ink);
+  box-shadow: 6px 6px 0 var(--sp-ink);
+}
+.sp-price-tag-old {
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: var(--sp-ink-soft);
+}
+.sp-price-tag-old s {
+  color: var(--sp-red);
+  text-decoration-thickness: 2px;
+}
+.sp-price-tag-by {
+  font-size: 0.8125rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+}
+.sp-price-tag-new {
+  font-size: clamp(3.25rem, 15vw, 4.5rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--sp-go);
+  white-space: nowrap;
+}
+.sp-price-tag-cur {
+  margin-right: 0.12em;
+  font-size: 0.42em;
+  vertical-align: 0.95em;
+}
 
 /* Botão chapado: verde sólido, cantos de 6px, sem sombra (modelo enviado pelo Luan). */
 .clay-button {

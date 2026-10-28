@@ -15,8 +15,9 @@ const display = "font-display";
 const MAIN_PRODUCT = "Cartilha Prática";
 const MAIN_PRODUCT_FULL = "Cartilha Prática: Como Vender na Shopee, do Zero à Primeira Venda";
 const MAIN_MOCKUP = { img: "mockup-cartilha-shopee.png", w: 1306, h: 1205 };
+const PHONE_MOCKUP = { img: "mockup-smartphone-notificacoes.png", w: 1024, h: 1536 };
 
-const HERO_BULLETS = ["Acesso vitalício", "Entrega imediata no seu e-mail", "Garantia de 30 dias"];
+const HERO_BULLETS = ["Acesso vitalício", "Entrega imediata no seu e-mail", "Garantia de 7 dias"];
 
 const INCLUDES = [
   "Prepare tudo o que precisa para começar a vender na Shopee, entendendo como a plataforma funciona, como os clientes compram e quais são seus primeiros passos.",
@@ -36,7 +37,7 @@ const INCLUDES = [
 ];
 
 const TRUST_BADGES = [
-  { label: "Garantia de 30 Dias", icon: null },
+  { label: "Garantia de 7 Dias", icon: null },
   { label: "Acesso Imediato", icon: "icone-acesso.png" },
   { label: "Suporte Dedicado", icon: "icone-suporte.png" },
   { label: "Satisfação Garantida", icon: "icone-satisfacao.png" },
@@ -99,23 +100,6 @@ const BONUSES = [
   },
 ];
 
-const FEATURES = [
-  {
-    img: "icone-download.png",
-    title: "Abra em qualquer aparelho",
-    text: "Deixe a cartilha aberta no celular, tablet ou computador enquanto monta sua loja e encontre a etapa que precisa em segundos.",
-  },
-  {
-    img: "icone-acceso-seguro.png",
-    title: "Acesso imediato e seguro",
-    text: "Assim que o pagamento é confirmado, você recebe no seu e-mail o link para baixar tudo. Sem espera e sem etapas extras.",
-  },
-  {
-    img: "icone-imprime.jpg",
-    title: "Imprima e preencha as atividades",
-    text: "Tudo vem em PDF de alta qualidade. Imprima os deveres de casa e checklists para preencher à mão e acompanhar cada etapa.",
-  },
-];
 
 const WHY = [
   "Um caminho organizado do zero à primeira venda, para você saber exatamente o que fazer em cada etapa, sem depender de informações soltas.",
@@ -212,7 +196,7 @@ const FAQ: { q: string; a: ReactNode }[] = [
       <>
         Com certeza!
         <br />
-        Você tem <strong>garantia incondicional de 30 dias</strong>.
+        Você tem <strong>garantia incondicional de 7 dias</strong>.
         <br />
         Leia a cartilha no seu ritmo e, se por qualquer motivo não for o que você esperava, é só pedir o reembolso
         total. Sem burocracia e sem perguntas.
@@ -378,13 +362,13 @@ export default function ShopeePage() {
       {/* Barra promocional fixa */}
       <div className="fixed inset-x-0 top-0 z-50">
         <div
-          className={`${display} flex h-11 w-full items-center justify-center gap-1.5 sp-topbar px-4 text-center text-[15px] font-extrabold tracking-wide text-white`}
+          className={`${display} flex h-11 w-full items-center justify-center gap-1.5 sp-topbar px-3 text-center text-[13px] font-extrabold text-white min-[400px]:text-[15px] sm:tracking-wide`}
         >
-          Preço especial disponível só
+          Desconto de 67% apenas
           <span className="animate-clay-blink rounded-full bg-white px-2.5 py-0.5 text-sp-600 underline underline-offset-2">
             HOJE
           </span>
-          !
+          nesta página!
         </div>
       </div>
 
@@ -407,6 +391,17 @@ export default function ShopeePage() {
             </h1>
 
             <MainMockup priority className="mt-6" />
+
+            {/* Âncora de preço já na primeira dobra (o Basic de R$ 10 é a porta de entrada). */}
+            <div className="sp-price-tag mt-6">
+              <span className="sp-price-tag-old">
+                DE <s>R$ 97,00</s>
+              </span>
+              <span className="sp-price-tag-by">POR APENAS</span>
+              <span className={`${display} sp-price-tag-new`}>
+                <span className="sp-price-tag-cur">R$</span>10,00
+              </span>
+            </div>
 
             <p className="mt-8 text-lg font-medium leading-relaxed text-white/95 sm:text-xl">
               Conheça a <SoftMark>Cartilha Prática</SoftMark>, um passo a passo visual e organizado, com{" "}
@@ -433,9 +428,17 @@ export default function ShopeePage() {
               e envios, mesmo que você esteja começando do absoluto zero.
             </p>
 
-            <CheckList items={INCLUDES} className="mt-10" />
-
-            <MainMockup className="mt-10" />
+            {/* Celular no meio da lista: pausa visual entre os dois blocos de itens. */}
+            <CheckList items={INCLUDES.slice(0, 7)} className="mt-10" />
+            <Image
+              src={`${IMG}/${PHONE_MOCKUP.img}`}
+              alt="Celular com notificações de vendas realizadas na Shopee"
+              width={PHONE_MOCKUP.w}
+              height={PHONE_MOCKUP.h}
+              sizes="(min-width: 640px) 380px, 80vw"
+              className="mx-auto my-10 w-[80%] max-w-[380px]"
+            />
+            <CheckList items={INCLUDES.slice(7)} />
           </Container>
         </LightSection>
 
@@ -496,25 +499,8 @@ export default function ShopeePage() {
             </div>
           </div>
 
-          <Container className="mt-10 sm:mt-12">
-            <SectionTitle tone="light">
-              Com a <Mark on="orange">{MAIN_PRODUCT}</Mark> você recebe:
-            </SectionTitle>
-
-            <article className="clay-red-card mt-10 flex flex-col gap-5 rounded-[32px] p-4 sm:p-8">
-              <h3 className={`${display} px-2 text-center text-2xl font-extrabold leading-tight text-white`}>
-                {MAIN_PRODUCT_FULL}
-              </h3>
-              <MainMockup />
-            </article>
-
-            <div className="mt-12 flex justify-center">
-              <CtaButton href="#offer">Quero a cartilha</CtaButton>
-            </div>
-          </Container>
-
           {/* 5 · Data */}
-          <Container className="mt-16">
+          <Container className="mt-10 sm:mt-12">
             <div className="clay-red-card flex flex-col items-center gap-6 rounded-[48px] px-6 py-10 text-center">
               <h2 className={`${display} text-3xl font-black leading-[1.15] tracking-tight text-white sm:text-4xl md:text-5xl`}>
                 GARANTINDO <Mark on="orange">HOJE</Mark> VOCÊ TAMBÉM RECEBE
@@ -576,36 +562,6 @@ export default function ShopeePage() {
           </Container>
         </ShopeeSlab>
 
-        {/* 7 · Recursos práticos */}
-        <LightSection>
-          <Container>
-            <h2 className={`${display} clay-text-gradient text-center text-5xl font-black leading-[1.1] tracking-tight md:text-6xl`}>
-              Feita para você consultar enquanto monta sua loja
-            </h2>
-            <div className="mt-8 flex justify-center">
-              <IconOrb>
-                <ChevronsDown className="h-8 w-8" strokeWidth={3} />
-              </IconOrb>
-            </div>
-
-            <div className="mx-auto mt-10 flex max-w-[480px] flex-col gap-8">
-              {FEATURES.map((f) => (
-                <div key={f.title} className="clay-card flex flex-col items-center gap-4 rounded-[32px] p-8 text-center">
-                  <Image
-                    src={`${IMG}/${f.img}`}
-                    alt=""
-                    width={512}
-                    height={512}
-                    className="h-32 w-32 object-contain mix-blend-multiply"
-                  />
-                  <h3 className={`${display} text-2xl font-extrabold leading-tight text-ink`}>{f.title}</h3>
-                  <p className="text-base font-medium leading-relaxed text-muted">{f.text}</p>
-                </div>
-              ))}
-            </div>
-          </Container>
-        </LightSection>
-
         {/* 8 · Por quê? + Para quem? */}
         <ShopeeSlab variant="why">
           <Container>
@@ -666,12 +622,12 @@ export default function ShopeePage() {
               <span className="clay-orb inline-flex h-[120px] w-[120px] items-center justify-center rounded-full bg-sp-go text-white">
                 <ShieldCheck className="h-16 w-16" strokeWidth={2.25} />
               </span>
-              <h2 className={`${display} text-3xl font-black tracking-tight sm:text-4xl sp-title--light`}>GARANTIA DE 30 DIAS</h2>
+              <h2 className={`${display} text-3xl font-black tracking-tight sm:text-4xl sp-title--light`}>GARANTIA DE 7 DIAS</h2>
               <p className="text-lg font-medium leading-relaxed text-white/95">
-                Compre com total tranquilidade. Depois da compra confirmada, você tem 30 dias para ler a cartilha, ver
+                Compre com total tranquilidade. Depois da compra confirmada, você tem 7 dias para ler a cartilha, ver
                 cada detalhe e, se sentir que não é o que esperava, pedir o reembolso total, sem burocracia.
               </p>
-              <CtaButton href="#offer" className="sm:min-w-[320px]">
+              <CtaButton href={CHECKOUT_PREMIUM} className="sm:min-w-[320px]">
                 Comprar agora
               </CtaButton>
             </div>
