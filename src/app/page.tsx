@@ -15,9 +15,9 @@ const display = "font-display";
 const MAIN_PRODUCT = "Cartilha Prática";
 const MAIN_PRODUCT_FULL = "Cartilha Prática: Como Vender na Shopee, do Zero à Primeira Venda";
 const MAIN_MOCKUP = { img: "mockup-cartilha-shopee.png", w: 1306, h: 1205 };
-const PHONE_MOCKUP = { img: "mockup-smartphone-notificacoes.png", w: 1024, h: 1536 };
+const PHONE_MOCKUP = { img: "mockup-smartphone-notificacoes.png", w: 1306, h: 1205 };
 
-const HERO_BULLETS = ["Acesso vitalício", "Entrega imediata no seu e-mail", "Garantia de 7 dias"];
+const HERO_BULLETS = ["Acesso vitalício", "Envio imediato por e-mail e WhatsApp", "Garantia de 7 dias"];
 
 const INCLUDES = [
   "Prepare tudo o que precisa para começar a vender na Shopee, entendendo como a plataforma funciona, como os clientes compram e quais são seus primeiros passos.",
@@ -130,7 +130,7 @@ const PREMIUM_ITEMS: OfferItem[] = [
   "Formato PDF, pronto para ver, baixar ou imprimir",
   "Acesso pelo celular, tablet ou computador",
   "Acesso vitalício",
-  "Entrega imediata no seu e-mail",
+  "Envio imediato por e-mail e WhatsApp",
 ].map((text) => ({ text, included: true }));
 
 // Basic: só o material principal; os 5 bônus aparecem riscados, com X vermelho.
@@ -144,12 +144,12 @@ const FAQ: { q: string; a: ReactNode }[] = [
     q: "Como vou receber a cartilha?",
     a: (
       <>
-        Assim que o pagamento é confirmado, <strong>você recebe tudo automaticamente</strong> no seu e-mail.
+        Assim que o pagamento é confirmado, <strong>você recebe tudo automaticamente</strong> no seu e-mail e no seu WhatsApp.
         <br />
         Não precisa enviar comprovante nem fazer nada a mais. Nosso sistema entrega tudo de forma{" "}
         <strong>imediata e segura</strong>.
         <br />
-        Só confira se digitou o seu e-mail corretamente na hora da compra.
+        Só confira se digitou o seu e-mail e o seu WhatsApp corretamente na hora da compra.
       </>
     ),
   },
@@ -430,14 +430,17 @@ export default function ShopeePage() {
 
             {/* Celular no meio da lista: pausa visual entre os dois blocos de itens. */}
             <CheckList items={INCLUDES.slice(0, 7)} className="mt-10" />
-            <Image
-              src={`${IMG}/${PHONE_MOCKUP.img}`}
-              alt="Celular com notificações de vendas realizadas na Shopee"
-              width={PHONE_MOCKUP.w}
-              height={PHONE_MOCKUP.h}
-              sizes="(min-width: 640px) 380px, 80vw"
-              className="mx-auto my-10 w-[80%] max-w-[380px]"
-            />
+            {/* O braço sai pelo canto direito da imagem, então ela encosta na borda da tela. */}
+            <div className="relative left-1/2 my-10 w-screen -translate-x-1/2">
+              <Image
+                src={`${IMG}/${PHONE_MOCKUP.img}`}
+                alt="Mão segurando um celular com notificações de vendas realizadas na Shopee"
+                width={PHONE_MOCKUP.w}
+                height={PHONE_MOCKUP.h}
+                sizes="(min-width: 700px) 640px, 92vw"
+                className="sp-edge-mockup ml-auto w-[92%]"
+              />
+            </div>
             <CheckList items={INCLUDES.slice(7)} />
           </Container>
         </LightSection>
