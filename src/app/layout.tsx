@@ -3,9 +3,9 @@ import type { ReactNode } from "react";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "100 Visual LightBurn Mind Maps: From Beginner to Advanced",
+  title: "Cartilha Prática: Como Vender na Shopee, do Zero à Primeira Venda",
   description:
-    "100 visual mind maps with real LightBurn screenshots that show you which tool to use, where to click, and what to check before you hit Start.",
+    "Um passo a passo visual e organizado para sair do zero e fazer a sua primeira venda na Shopee: loja, produtos, fornecedores, anúncios, lucro e envios.",
 };
 
 export const viewport: Viewport = {
@@ -21,7 +21,7 @@ const GOOGLE_FONTS_URL =
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className="antialiased">
+    <html lang="pt-BR" className="antialiased">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

@@ -47,16 +47,16 @@ export default function ShowcaseSlider({
               className="h-auto w-full rounded-[16px] bg-white shadow-[0_8px_18px_rgba(120,30,5,0.22)]"
             />
             <span className="sr-only">
-              Page {i + 1} of {slides.length}
+              Página {i + 1} de {slides.length}
             </span>
           </div>
         ))}
       </div>
 
-      <button type="button" aria-label="Previous page" onClick={() => goTo(index - 1)} className="showcase-arrow left-1 sm:-left-6">
+      <button type="button" aria-label="Página anterior" onClick={() => goTo(index - 1)} className="showcase-arrow left-1 sm:-left-6">
         <ChevronLeft className="h-7 w-7" strokeWidth={3} />
       </button>
-      <button type="button" aria-label="Next page" onClick={() => goTo(index + 1)} className="showcase-arrow right-1 sm:-right-6">
+      <button type="button" aria-label="Próxima página" onClick={() => goTo(index + 1)} className="showcase-arrow right-1 sm:-right-6">
         <ChevronRight className="h-7 w-7" strokeWidth={3} />
       </button>
 

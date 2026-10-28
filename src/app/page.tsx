@@ -1,54 +1,46 @@
 import Image from "next/image";
 import type { ReactNode } from "react";
 import ShowcaseSlider from "./showcase-slider";
-import { Check, ChevronsDown, Gift, Minus, Plus, ShieldCheck, TriangleAlert } from "lucide-react";
+import { Check, ChevronsDown, Gift, Minus, Plus, ShieldCheck, X } from "lucide-react";
 
 const IMG = "/assets";
-// TODO: trocar pelo link de checkout da Hotmart desta oferta quando for enviado.
-const CHECKOUT_URL = "#offer";
+const CHECKOUT_PREMIUM = "https://pay.cakto.com.br/4gwnhop_1252585";
+const CHECKOUT_BASIC = "https://pay.cakto.com.br/dmfa9gr_1252563";
 const display = "font-display";
 
 /* ------------------------------------------------------------------ */
 /* Conteúdo                                                            */
 /* ------------------------------------------------------------------ */
 
-const MAIN_PRODUCT = "100 Visual LightBurn Mind Maps";
-const MAIN_MOCKUP = { img: "main-100-mind-maps.png", w: 1306, h: 1204 };
-const COVER_MOCKUP = { img: "mockup-cartilha-shopee.png", w: 1306, h: 1205 };
+const MAIN_PRODUCT = "Cartilha Prática";
+const MAIN_PRODUCT_FULL = "Cartilha Prática: Como Vender na Shopee, do Zero à Primeira Venda";
+const MAIN_MOCKUP = { img: "mockup-cartilha-shopee.png", w: 1306, h: 1205 };
 
-const HERO_BULLETS = ["Lifetime access", "Instant delivery to your email", "30-day money-back guarantee"];
+const HERO_BULLETS = ["Acesso vitalício", "Entrega imediata no seu e-mail", "Garantia de 30 dias"];
 
-const INCLUDES_TOP = [
-  "A complete library of 100 Visual LightBurn Mind Maps, organized by task, taking you from beginner to advanced.",
-  "Each mind map shows you which tool to use, where to click, the step-by-step process, and what to check before finishing.",
-  "Real LightBurn interface screenshots with arrows, annotations, and visual highlights to make every step easier to follow.",
-  "Module 1: Getting Started & Understanding the LightBurn Interface",
-  "Module 2: Importing & Organizing Files (SVG, DXF, Images)",
-  "Module 3: Shapes & Design Tools (Outlines, Offsets, Welding & Separating Shapes)",
-  "Module 4: Working with Text (Fonts, Converting to Curves, Curved Text & Names for Cutting)",
-  "Module 5: Alignment & Positioning",
-  "Module 6: Layers & Settings (Line, Fill, Fill + Line)",
-  "Module 7: Images & Laser Engraving",
-  "Module 8: Preparing Your Project for the Laser (Start From, User Origin, Frame)",
-  "Module 9: Previewing & Running Your Project (Preview & Final Checks)",
-  "Module 10: Everyday Projects (Keychains, Signs, Tags, Simple Boxes & Batch Production)",
-];
-
-const INCLUDES_BOTTOM = [
-  "Short, straightforward explanations without long video lessons or unnecessary theory.",
-  "Reusable visual mind maps you can refer to anytime you forget how to use a tool or feature.",
-  "Access your mind maps on your phone, tablet, or computer while working directly in LightBurn.",
-  "PDF format, ready to view, download, or print whenever you need.",
-  "Instant delivery to your email after purchase.",
-  "Lifetime access with a one-time payment. No subscriptions or monthly fees.",
+const INCLUDES = [
+  "Prepare tudo o que precisa para começar a vender na Shopee, entendendo como a plataforma funciona, como os clientes compram e quais são seus primeiros passos.",
+  "Entenda como a Shopee funciona por dentro, desde a busca dos produtos até o pagamento, a aprovação do pedido e o recebimento do dinheiro das suas vendas.",
+  "Aprenda a criar sua loja na Shopee com CPF ou CNPJ, sabendo qual escolher, quais dados preencher e o que configurar para começar.",
+  "Descubra como encontrar produtos com potencial de venda, pesquisando o que já tem procura, analisando anúncios de outras lojas e identificando oportunidades para começar.",
+  "Aprenda onde encontrar fornecedores para comprar produtos e revender, incluindo lojas de fábrica, atacadistas, pequenos fabricantes e formas práticas de encontrar contatos.",
+  "Saiba calcular o preço de venda e quanto realmente vai lucrar, considerando as tarifas da Shopee, o custo dos produtos, frete, embalagem e outros descontos.",
+  "Aprenda a criar e publicar anúncios completos na Shopee, com fotos, títulos, descrições, categorias, preços, estoque e variações, seguindo o passo a passo de cada campo.",
+  "Monte seu plano para conquistar as primeiras vendas, sabendo quais produtos testar, como definir seu preço inicial e como começar a atrair compradores para sua loja.",
+  "Aprenda a usar cupons, ofertas e promoções da Shopee, incluindo campanhas de datas especiais, afiliados, Shopee Vídeo e Shopee Live para divulgar seus produtos.",
+  "Saiba como conquistar boas avaliações e construir a reputação da sua loja, aprendendo a atender clientes, responder mensagens e cuidar dos indicadores da Shopee.",
+  "Descubra exatamente o que fazer quando realizar sua primeira venda, desde conferir o pedido e preparar o pacote até imprimir a etiqueta e organizar a postagem.",
+  "Aprenda a embalar e enviar seus produtos corretamente, entendendo etiquetas, materiais de embalagem, prazos de postagem e como funciona a logística da Shopee.",
+  "Organize os próximos passos da sua loja para continuar evoluindo, com orientações para acompanhar sua operação e dar continuidade à sua jornada de vendas.",
+  "Atividades práticas e checklists ao final das lições, para você aplicar o que aprendeu, saber o que fazer em cada etapa e seguir o caminho do zero à sua primeira venda sem ficar perdido.",
 ];
 
 const TRUST_BADGES = [
-  { label: "30-Day Guarantee", icon: null },
-  { label: "Instant Access", icon: "icone-acesso.png" },
-  { label: "Dedicated Support", icon: "icone-suporte.png" },
-  { label: "Satisfaction Guaranteed", icon: "icone-satisfacao.png" },
-  { label: "100% Secure Checkout", icon: "icone-compra-segura.png" },
+  { label: "Garantia de 30 Dias", icon: null },
+  { label: "Acesso Imediato", icon: "icone-acesso.png" },
+  { label: "Suporte Dedicado", icon: "icone-suporte.png" },
+  { label: "Satisfação Garantida", icon: "icone-satisfacao.png" },
+  { label: "Compra 100% Segura", icon: "icone-compra-segura.png" },
 ];
 
 // Páginas reais da cartilha (em pé), mostradas nos slides "Take a look inside".
@@ -89,122 +81,150 @@ const HOMEWORK = [
   { title: "Dever de casa da Lição 10", img: "dever-10-reputacao.png" },
 ];
 
+// O 1º bônus tem layout próprio (título, imagem, subtítulo, descrição); os demais vêm em BONUSES.
+const FIRST_BONUS = {
+  title: "50 Ideias de Produtos mais Procurados para Começar a Vender na Shopee",
+  img: "bonus-50-ideias-produtos.png",
+  price: "DE R$ 27,90",
+};
+
 const BONUSES = [
-  { title: "Flowchart: “Which Tool Should I Use?”", img: "bonus-which-tool-flowchart.png", price: "WAS $17.90" },
-  { title: "Guide to Common Mistakes in LightBurn", img: "bonus-common-mistakes.png", price: "WAS $19.90" },
-  { title: "Checklist Before Starting the Laser", img: "bonus-laser-checklist.png", price: "WAS $14.90" },
-  { title: "Visual Guide to LightBurn Shortcuts", img: "bonus-shortcuts.png", price: "WAS $17.90" },
+  { title: "Lista de Fornecedores +30 Nichos", img: "bonus-lista-fornecedores.png", price: "DE R$ 37,90" },
+  { title: "Assistente de IA para Pesquisar Produtos e Concorrentes", img: "bonus-assistente-ia.png", price: "DE R$ 29,90" },
+  { title: "30 Prompts de IA para Criar Anúncios na Shopee", img: "bonus-30-prompts-ia.png", price: "DE R$ 24,90" },
+  {
+    title: "+20 Modelos Prontos de Promoções e Cupons para Atrair Clientes na Shopee",
+    img: "bonus-modelos-promocoes.png",
+    price: "DE R$ 19,90",
+  },
 ];
 
 const FEATURES = [
   {
     img: "icone-download.png",
-    title: "Open it on any device",
-    text: "Keep your mind maps open on your phone, tablet, or computer while you work in LightBurn, and find the step you need in seconds.",
+    title: "Abra em qualquer aparelho",
+    text: "Deixe a cartilha aberta no celular, tablet ou computador enquanto monta sua loja e encontre a etapa que precisa em segundos.",
   },
   {
     img: "icone-acceso-seguro.png",
-    title: "Instant, secure access",
-    text: "As soon as your payment is confirmed, you'll get a link in your email to download everything. No waiting and no extra steps.",
+    title: "Acesso imediato e seguro",
+    text: "Assim que o pagamento é confirmado, você recebe no seu e-mail o link para baixar tudo. Sem espera e sem etapas extras.",
   },
   {
     img: "icone-imprime.jpg",
-    title: "Print the ones you use most",
-    text: "Everything comes in high-quality PDF. Print your go-to maps and pin them up next to your laser for quick reference.",
+    title: "Imprima e preencha as atividades",
+    text: "Tudo vem em PDF de alta qualidade. Imprima os deveres de casa e checklists para preencher à mão e acompanhar cada etapa.",
   },
 ];
 
 const WHY = [
-  "Every mind map shows the exact tool, the exact clicks, and the right order, so you stop guessing and start finishing projects.",
-  "Real LightBurn screenshots with arrows and highlights, so what you see on the page matches what you see on your screen.",
-  "Organized by task, from your first file to batch production, so you always know where to look.",
-  "Short and visual. No long videos to scrub through and no theory you'll never use.",
-  "Fewer wasted materials and failed burns, because you check the right settings before you hit Start.",
+  "Um caminho organizado do zero à primeira venda, para você saber exatamente o que fazer em cada etapa, sem depender de informações soltas.",
+  "Telas e funcionalidades da Shopee ilustradas, para o que você vê na página ser o mesmo que você vê no seu celular ou computador.",
+  "Exemplos práticos e cálculos prontos, para você entender quanto cobrar e quanto realmente sobra em cada venda.",
+  "Explicações curtas, simples e diretas, sem vídeos longos para assistir e sem teoria que você nunca vai usar.",
+  "Atividades e checklists ao final das lições, para você aplicar enquanto aprende e avançar com segurança até a primeira venda.",
 ];
 
 const FOR_WHOM = [
-  "Beginners who just got a laser and feel lost in LightBurn.",
-  "Hobbyists who want to make keychains, signs, and gifts without endless trial and error.",
-  "Small business owners who sell engraved and laser-cut products.",
-  "Makers who already use LightBurn but keep forgetting where things are.",
-  "Anyone who learns better by seeing than by sitting through long video lessons.",
+  "Quem quer começar a vender na Shopee, mas não sabe por onde começar.",
+  "Quem quer uma renda extra vendendo pela internet, mesmo sem experiência.",
+  "Quem já tentou vender, mas se perdeu entre tarifas, anúncios e envios.",
+  "Quem tem dúvida sobre quais produtos vender e onde encontrar fornecedores.",
+  "Quem aprende melhor vendo o passo a passo do que assistindo aulas longas.",
 ];
 
-const OFFER_ITEMS = [
-  "100 Visual LightBurn Mind Maps, from beginner to advanced",
-  "10 modules organized by task",
-  "Real LightBurn screenshots with arrows and annotations",
-  "Bonus: Visual Guide to File Formats",
-  "Bonus: Flowchart “Which Tool Should I Use?”",
-  "Bonus: Guide to Common Mistakes in LightBurn",
-  "Bonus: Checklist Before Starting the Laser",
-  "Bonus: Visual Guide to LightBurn Shortcuts",
-  "PDF format, ready to view, download, or print",
-  "Access on your phone, tablet, or computer",
-  "Lifetime access",
-  "Instant delivery to your email",
+type OfferItem = { text: string; included: boolean };
+
+const BONUS_TITLES = [FIRST_BONUS.title, ...BONUSES.map((b) => b.title)];
+
+const PREMIUM_ITEMS: OfferItem[] = [
+  MAIN_PRODUCT_FULL,
+  "13 módulos que acompanham toda a jornada, da preparação ao envio",
+  "Telas da Shopee ilustradas, exemplos práticos e cálculos",
+  "Atividades práticas e checklists ao final das lições",
+  ...BONUS_TITLES.map((t) => `Bônus: ${t}`),
+  "Formato PDF, pronto para ver, baixar ou imprimir",
+  "Acesso pelo celular, tablet ou computador",
+  "Acesso vitalício",
+  "Entrega imediata no seu e-mail",
+].map((text) => ({ text, included: true }));
+
+// Basic: só o material principal; os 5 bônus aparecem riscados, com X vermelho.
+const BASIC_ITEMS: OfferItem[] = [
+  ...[MAIN_PRODUCT_FULL, "Acesso vitalício", "Garantia de 7 dias"].map((text) => ({ text, included: true })),
+  ...BONUS_TITLES.map((t) => ({ text: `Bônus: ${t}`, included: false })),
 ];
 
 const FAQ: { q: string; a: ReactNode }[] = [
   {
-    q: "How will I get access to the mind maps?",
+    q: "Como vou receber a cartilha?",
     a: (
       <>
-        As soon as your payment is confirmed, <strong>you&apos;ll automatically receive everything</strong> in your
-        email.
+        Assim que o pagamento é confirmado, <strong>você recebe tudo automaticamente</strong> no seu e-mail.
         <br />
-        No receipts to send and no extra steps. Our system delivers it all <strong>instantly and securely</strong>.
+        Não precisa enviar comprovante nem fazer nada a mais. Nosso sistema entrega tudo de forma{" "}
+        <strong>imediata e segura</strong>.
         <br />
-        Just make sure you type your email address correctly at checkout.
+        Só confira se digitou o seu e-mail corretamente na hora da compra.
       </>
     ),
   },
   {
-    q: "Is this a physical or digital product?",
+    q: "É um produto físico ou digital?",
     a: (
       <>
-        It&apos;s <strong>100% digital</strong>. You get high-quality PDFs that you can open on your phone, tablet, or
-        computer, or <strong>print whenever you want</strong> to keep next to your laser.
+        É <strong>100% digital</strong>. Você recebe a cartilha e os bônus em PDF de alta qualidade, para abrir no
+        celular, tablet ou computador, ou <strong>imprimir quando quiser</strong>.
       </>
     ),
   },
   {
-    q: "I've never used LightBurn. Is this for me?",
+    q: "Nunca vendi nada na internet. A cartilha é para mim?",
     a: (
       <>
-        Yes! The mind maps <strong>start from the very basics</strong>, like getting to know the workspace and
-        navigating the screen, and walk you step by step all the way to complete projects and batch production.
+        Sim! A cartilha <strong>começa do absoluto zero</strong>, com as expectativas e a preparação, e segue passo a
+        passo pela criação da loja, escolha dos produtos, anúncios e envios até a sua primeira venda.
       </>
     ),
   },
   {
-    q: "Does it work with my laser?",
+    q: "Preciso ter CNPJ para começar?",
     a: (
       <>
-        The mind maps are all about <strong>using LightBurn itself</strong>: the interface, tools, layers, and
-        settings. So they&apos;re useful for <strong>any diode, CO2, or fiber laser that runs on LightBurn</strong>.
+        Não. A cartilha explica <strong>quando faz sentido começar com CPF</strong>, quando o CNPJ passa a valer a pena
+        e o que muda em cada caso, para você escolher com segurança.
       </>
     ),
   },
   {
-    q: "Is there a guarantee?",
+    q: "A cartilha garante que eu vou vender?",
     a: (
       <>
-        Absolutely!
+        Nenhum material pode garantir vendas, porque o resultado depende da sua aplicação. O que a cartilha entrega é{" "}
+        <strong>um caminho claro e organizado</strong>, com tudo o que você precisa fazer em cada etapa para chegar
+        preparado à sua primeira venda.
+      </>
+    ),
+  },
+  {
+    q: "Tem garantia?",
+    a: (
+      <>
+        Com certeza!
         <br />
-        You get an <strong>unconditional 30-day money-back guarantee</strong>.
+        Você tem <strong>garantia incondicional de 30 dias</strong>.
         <br />
-        Go through the material at your own pace, and if it&apos;s not what you expected for any reason, just ask for a
-        full refund. No hassle and no questions asked.
+        Leia a cartilha no seu ritmo e, se por qualquer motivo não for o que você esperava, é só pedir o reembolso
+        total. Sem burocracia e sem perguntas.
       </>
     ),
   },
   {
-    q: "What if I have questions?",
+    q: "E se eu tiver dúvidas?",
     a: (
       <>
-        Our team offers <strong>dedicated support</strong> by email. Just reach out through the support contact
-        included with your purchase and we&apos;ll be happy to help.
+        Nossa equipe oferece <strong>suporte dedicado</strong> por e-mail. É só entrar em contato pelo canal de suporte
+        que vem com a sua compra e vamos te ajudar com prazer.
       </>
     ),
   },
@@ -268,7 +288,7 @@ function CheckOrb({ size = "md" }: { size?: "sm" | "md" }) {
   const dims = size === "sm" ? "h-6 w-6" : "h-7 w-7";
   return (
     <span
-      className={`clay-orb inline-flex ${dims} shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 text-white`}
+      className={`clay-orb inline-flex ${dims} shrink-0 items-center justify-center rounded-full bg-sp-go text-white`}
     >
       <Check className={size === "sm" ? "h-3.5 w-3.5" : "h-4 w-4"} strokeWidth={3.5} />
     </span>
@@ -296,7 +316,7 @@ function CtaButton({ href, children, className = "" }: { href: string; children:
   return (
     <a
       href={href}
-      className={`clay-button ${display} inline-flex min-h-16 w-full items-center justify-center rounded-[20px] px-6 py-3 text-center text-base font-black tracking-wide sm:text-lg sm:w-auto ${className}`}
+      className={`clay-button ${display} inline-flex min-h-14 w-full items-center justify-center rounded-[6px] px-8 py-3 text-center text-lg font-extrabold sm:w-auto sm:text-xl ${className}`}
     >
       {children}
     </a>
@@ -333,7 +353,7 @@ function MainMockup({ priority = false, className = "" }: { priority?: boolean; 
   return (
     <Image
       src={`${IMG}/${MAIN_MOCKUP.img}`}
-      alt={`${MAIN_PRODUCT}: From Beginner to Advanced`}
+      alt={MAIN_PRODUCT_FULL}
       width={MAIN_MOCKUP.w}
       height={MAIN_MOCKUP.h}
       priority={priority}
@@ -360,11 +380,11 @@ export default function ShopeePage() {
         <div
           className={`${display} flex h-11 w-full items-center justify-center gap-1.5 sp-topbar px-4 text-center text-[15px] font-extrabold tracking-wide text-white`}
         >
-          Special price available
+          Preço especial disponível só
           <span className="animate-clay-blink rounded-full bg-white px-2.5 py-0.5 text-sp-600 underline underline-offset-2">
-            TODAY
+            HOJE
           </span>
-          only!
+          !
         </div>
       </div>
 
@@ -386,27 +406,18 @@ export default function ShopeePage() {
               </span>
             </h1>
 
-            <Image
-              src={`${IMG}/${COVER_MOCKUP.img}`}
-              alt="Cartilha Prática: Como vender na Shopee, do zero à primeira venda"
-              width={COVER_MOCKUP.w}
-              height={COVER_MOCKUP.h}
-              priority
-              className="mx-auto mt-6 w-full"
-            />
+            <MainMockup priority className="mt-6" />
 
             <p className="mt-8 text-lg font-medium leading-relaxed text-white/95 sm:text-xl">
-              Discover the <SoftMark>100 Visual LightBurn Mind Maps</SoftMark>, a complete step-by-step
-              library built with <strong className="font-extrabold">real LightBurn screenshots</strong>, arrows, and
-              highlights that show you{" "}
-              <SoftMark>exactly which tool to use, where to click, and what to check</SoftMark> before you hit
-              Start.
+              Conheça a <SoftMark>Cartilha Prática</SoftMark>, um passo a passo visual e organizado, com{" "}
+              <strong className="font-extrabold">telas da Shopee ilustradas</strong>, exemplos e cálculos que mostram{" "}
+              <SoftMark>o que fazer em cada etapa</SoftMark>, da criação da sua loja até a sua primeira venda.
             </p>
 
             <CheckList items={HERO_BULLETS} onRed className="mt-8 w-full text-left" />
 
             <CtaButton href="#offer" className="mt-10">
-              YES, I WANT THE MIND MAPS
+              Sim, quero a cartilha
             </CtaButton>
           </Container>
         </ShopeeSlab>
@@ -415,14 +426,16 @@ export default function ShopeePage() {
         <LightSection>
           <Container>
             <h2 className={`${display} text-center text-3xl font-black leading-[1.1] tracking-tight sp-title--dark sm:text-4xl md:text-5xl`}>
-              EVERYTHING YOU&apos;LL LEARN WITH THE <Mark on="light">100 VISUAL LIGHTBURN MIND MAPS</Mark>
+              Veja tudo o que você vai aprender para <Mark on="light">começar a vender na Shopee!</Mark>
             </h2>
+            <p className="mt-6 text-center text-lg font-medium leading-relaxed text-sp-ink-soft">
+              Aprenda o passo a passo, desde a criação da sua loja até a preparação dos seus primeiros anúncios, vendas
+              e envios, mesmo que você esteja começando do absoluto zero.
+            </p>
 
-            <CheckList items={INCLUDES_TOP} className="mt-10" />
+            <CheckList items={INCLUDES} className="mt-10" />
 
             <MainMockup className="mt-10" />
-
-            <CheckList items={INCLUDES_BOTTOM} className="mt-10" />
           </Container>
         </LightSection>
 
@@ -434,7 +447,7 @@ export default function ShopeePage() {
                 {badge.icon ? (
                   <Image src={`${IMG}/${badge.icon}`} alt="" width={512} height={512} className="h-[84px] w-[84px]" />
                 ) : (
-                  <span className="clay-orb inline-flex h-[84px] w-[84px] items-center justify-center rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 text-white">
+                  <span className="clay-orb inline-flex h-[84px] w-[84px] items-center justify-center rounded-full bg-sp-go text-white">
                     <Check className="h-11 w-11" strokeWidth={3.5} />
                   </span>
                 )}
@@ -450,9 +463,9 @@ export default function ShopeePage() {
           <div className="sp-inside-top -mt-14 pt-14">
             <Container>
               <SectionTitle tone="dark">
-                Take a look <Mark on="light">inside</Mark>
+                Veja a cartilha <Mark on="light">por dentro</Mark>
               </SectionTitle>
-              <p className="mt-3 text-center text-lg font-bold text-sp-ink-soft">Swipe to see more pages →</p>
+              <p className="mt-3 text-center text-lg font-bold text-sp-ink-soft">Arraste para ver mais páginas →</p>
             </Container>
             <div className="mx-auto mt-8 w-full max-w-[600px] px-1.5 sm:px-10">
               <ShowcaseSlider slides={SHOWCASE} imgBase={IMG} altPrefix="Página da cartilha" />
@@ -485,18 +498,18 @@ export default function ShopeePage() {
 
           <Container className="mt-10 sm:mt-12">
             <SectionTitle tone="light">
-              With the <Mark on="orange">{MAIN_PRODUCT}</Mark> you&apos;ll get access to:
+              Com a <Mark on="orange">{MAIN_PRODUCT}</Mark> você recebe:
             </SectionTitle>
 
             <article className="clay-red-card mt-10 flex flex-col gap-5 rounded-[32px] p-4 sm:p-8">
               <h3 className={`${display} px-2 text-center text-2xl font-extrabold leading-tight text-white`}>
-                {MAIN_PRODUCT}: From Beginner to Advanced
+                {MAIN_PRODUCT_FULL}
               </h3>
               <MainMockup />
             </article>
 
             <div className="mt-12 flex justify-center">
-              <CtaButton href="#offer">I WANT THE MIND MAPS</CtaButton>
+              <CtaButton href="#offer">Quero a cartilha</CtaButton>
             </div>
           </Container>
 
@@ -504,7 +517,7 @@ export default function ShopeePage() {
           <Container className="mt-16">
             <div className="clay-red-card flex flex-col items-center gap-6 rounded-[48px] px-6 py-10 text-center">
               <h2 className={`${display} text-3xl font-black leading-[1.15] tracking-tight text-white sm:text-4xl md:text-5xl`}>
-                ORDER ON <Mark on="orange">OCTOBER 24, 25 AND 26</Mark> AND YOU&apos;LL ALSO GET
+                GARANTINDO <Mark on="orange">HOJE</Mark> VOCÊ TAMBÉM RECEBE
               </h2>
               <IconOrb tone="white">
                 <ChevronsDown className="h-8 w-8" strokeWidth={3} />
@@ -515,7 +528,7 @@ export default function ShopeePage() {
           {/* 6 · Bônus */}
           <Container className="mt-16">
             <SectionTitle tone="light">
-              <Mark on="orange">EXCLUSIVE BONUSES</Mark> to make every project easier
+              <Mark on="orange">5 BÔNUS EXCLUSIVOS</Mark> para acelerar a sua primeira venda
             </SectionTitle>
             <div className="mt-8 flex justify-center">
               <IconOrb tone="white">
@@ -523,36 +536,34 @@ export default function ShopeePage() {
               </IconOrb>
             </div>
             <p className="mt-8 text-center text-lg font-medium leading-relaxed text-white/95">
-              When you order today, you&apos;re not just getting the 100 mind maps. You&apos;ll also get{" "}
-              <SoftMark>exclusive bonuses</SoftMark> that help you pick the right file, the right tool, and the
-              right settings, so you waste less material and get clean results faster.
+              Garantindo hoje, você não leva só a cartilha. Você também recebe{" "}
+              <SoftMark>5 bônus exclusivos</SoftMark> que facilitam cada etapa: ideias de produtos, fornecedores,
+              inteligência artificial para pesquisar e anunciar, e modelos prontos de promoções para atrair clientes.
             </p>
 
             <div className="mt-10 flex flex-col gap-8">
               {/* 1º bônus: layout próprio (título → imagem → subtítulo → descrição) */}
               <article className="clay-red-card flex flex-col gap-5 rounded-[32px] p-4 text-center sm:p-8">
-                <h3 className={`${display} text-2xl font-extrabold leading-tight text-white`}>
-                  Visual Guide to File Formats
-                </h3>
+                <h3 className={`${display} text-2xl font-extrabold leading-tight text-white`}>{FIRST_BONUS.title}</h3>
                 <Image
-                  src={`${IMG}/bonus-file-formats.png`}
-                  alt="Visual Guide to File Formats"
+                  src={`${IMG}/${FIRST_BONUS.img}`}
+                  alt={FIRST_BONUS.title}
                   width={1306}
-                  height={1204}
+                  height={1205}
                   className="w-full"
                 />
-                <h4 className={`${display} text-xl font-extrabold text-white`}>Never import the wrong file again:</h4>
+                <h4 className={`${display} text-xl font-extrabold text-white`}>Nunca mais fique sem saber o que vender:</h4>
                 <p className="px-2 text-left text-base font-medium leading-relaxed text-white/90">
-                  A visual guide to the file types you&apos;ll use in LightBurn, like SVG, DXF, PDF, PNG, and JPG. See
-                  which format works best for cutting and which one for engraving, how to import each one the right
-                  way, and how to avoid the import problems that ruin a project before it even starts.
+                  Uma lista com 50 ideias de produtos que já têm procura na Shopee, para você começar com mais segurança.
+                  Use como ponto de partida para pesquisar, comparar com outras lojas e escolher os primeiros produtos que
+                  vai testar na sua loja.
                 </p>
-                <BonusPrice price="WAS $19.90" />
+                <BonusPrice price={FIRST_BONUS.price} />
               </article>
 
               {BONUSES.map((b) => (
                 <article key={b.title} className="clay-red-card flex flex-col gap-5 rounded-[32px] p-4 pb-8 text-center sm:p-8">
-                  <Image src={`${IMG}/${b.img}`} alt={b.title} width={1306} height={1204} className="mx-auto w-full" />
+                  <Image src={`${IMG}/${b.img}`} alt={b.title} width={1306} height={1205} className="mx-auto w-full" />
                   <h3 className={`${display} px-2 text-2xl font-extrabold leading-tight text-white`}>{b.title}</h3>
                   <BonusPrice price={b.price} />
                 </article>
@@ -560,7 +571,7 @@ export default function ShopeePage() {
             </div>
 
             <div className="mt-12 flex justify-center">
-              <CtaButton href="#offer">I WANT THE MIND MAPS</CtaButton>
+              <CtaButton href="#offer">Quero a cartilha</CtaButton>
             </div>
           </Container>
         </ShopeeSlab>
@@ -569,7 +580,7 @@ export default function ShopeePage() {
         <LightSection>
           <Container>
             <h2 className={`${display} clay-text-gradient text-center text-5xl font-black leading-[1.1] tracking-tight md:text-6xl`}>
-              Made to use right next to your laser
+              Feita para você consultar enquanto monta sua loja
             </h2>
             <div className="mt-8 flex justify-center">
               <IconOrb>
@@ -599,7 +610,7 @@ export default function ShopeePage() {
         <ShopeeSlab variant="why">
           <Container>
             <SectionTitle tone="dark">
-              Why the <Mark on="light">{MAIN_PRODUCT}</Mark> will change the way you use your laser
+              Por que a <Mark on="light">{MAIN_PRODUCT}</Mark> vai ser o seu passo a passo até a primeira venda
             </SectionTitle>
 
             <MainMockup className="mt-10" />
@@ -609,7 +620,7 @@ export default function ShopeePage() {
             </div>
 
             <SectionTitle tone="light" className="mt-14">
-              Who is this for?
+              Para quem é a cartilha?
             </SectionTitle>
 
             <div className="clay-red-card mt-10 rounded-[32px] p-6 sm:p-8">
@@ -621,62 +632,30 @@ export default function ShopeePage() {
         {/* 9 · Oferta */}
         <LightSection id="offer" className="scroll-mt-20">
           <Container>
-            <SectionTitle>WE HAVE SOMETHING SPECIAL FOR YOU</SectionTitle>
+            <SectionTitle>TEMOS ALGO ESPECIAL PARA VOCÊ</SectionTitle>
             <div className="mt-8 flex justify-center">
               <IconOrb>
                 <ChevronsDown className="h-8 w-8" strokeWidth={3} />
               </IconOrb>
             </div>
 
-            <div className="relative mt-14">
-              {/* Selo "Best Seller" flutuando acima do card */}
-              <div className="absolute -top-5 left-1/2 z-20 -translate-x-1/2">
-                <span
-                  className={`${display} clay-orb inline-flex items-center gap-1.5 whitespace-nowrap rounded-full bg-gradient-to-br from-white to-sp-cream px-5 py-2.5 text-sm font-black tracking-wide text-sp-600`}
-                >
-                  🌟 Best Seller
-                </span>
-              </div>
-
-              <div className="sp-slab sp-slab--offer relative overflow-hidden rounded-[48px] px-5 pb-10 pt-14 text-white sm:px-10">
-                <div className="relative z-10 flex flex-col items-center text-center">
-                  <h3 className={`${display} text-3xl font-black leading-[1.15] tracking-tight sm:text-4xl sp-title--dark`}>
-                    {MAIN_PRODUCT}
-                    <br />
-                    <Mark on="light">COMPLETE PACKAGE</Mark>
-                  </h3>
-
-                  <MainMockup className="mt-8" />
-
-                  <div className="mt-8 w-full text-left">
-                    <ul className="flex flex-col gap-3">
-                      {OFFER_ITEMS.map((item) => (
-                        <li key={item} className="flex items-start gap-3">
-                          <CheckOrb size="sm" />
-                          <span className="pt-0.5 text-[15px] font-bold leading-snug text-white">{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <p className={`${display} mt-10 text-xl font-extrabold text-white/75 line-through decoration-2`}>
-                    WAS $47.00
-                  </p>
-                  <p className={`${display} mt-1 text-2xl font-black tracking-wide`}>TODAY ONLY</p>
-                  <p className={`${display} mt-1 text-8xl font-black leading-none tracking-tight`}>$10</p>
-                  <p className="mt-6 inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-bold text-sp-600 shadow-[var(--shadow-clay-orb)]">
-                    <TriangleAlert className="h-4 w-4 text-[#f59e0b]" strokeWidth={2.75} />
-                    You can pay in your local currency.
-                  </p>
-                  <p className="mt-6 text-sm font-bold text-white/90">One-time payment</p>
-
-                  <CtaButton href={CHECKOUT_URL} className="mt-6 sm:min-w-[320px]">
-                    Buy now
-                  </CtaButton>
-                  <p className="mt-3 text-xs font-bold uppercase tracking-widest text-white/85">100% secure payment</p>
-                </div>
-              </div>
-            </div>
+            <OfferCard
+              badge="🌟 Mais Vendido"
+              tier="PACOTE PREMIUM"
+              items={PREMIUM_ITEMS}
+              oldPrice="DE R$ 97,00"
+              price="27,00"
+              href={CHECKOUT_PREMIUM}
+              className="mt-14"
+            />
+            <OfferCard
+              tier="PACOTE BÁSICO"
+              items={BASIC_ITEMS}
+              oldPrice="DE R$ 47,00"
+              price="10,00"
+              href={CHECKOUT_BASIC}
+              className="mt-12"
+            />
           </Container>
         </LightSection>
 
@@ -684,17 +663,16 @@ export default function ShopeePage() {
         <ShopeeSlab variant="guarantee">
           <Container>
             <div className="clay-red-card flex flex-col items-center gap-6 rounded-[48px] px-6 py-10 text-center sm:px-10">
-              <span className="clay-orb inline-flex h-[120px] w-[120px] items-center justify-center rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 text-white">
+              <span className="clay-orb inline-flex h-[120px] w-[120px] items-center justify-center rounded-full bg-sp-go text-white">
                 <ShieldCheck className="h-16 w-16" strokeWidth={2.25} />
               </span>
-              <h2 className={`${display} text-3xl font-black tracking-tight sm:text-4xl sp-title--light`}>30-DAY MONEY-BACK GUARANTEE</h2>
+              <h2 className={`${display} text-3xl font-black tracking-tight sm:text-4xl sp-title--light`}>GARANTIA DE 30 DIAS</h2>
               <p className="text-lg font-medium leading-relaxed text-white/95">
-                Buy with complete peace of mind. Once your order is confirmed, you have 30 days to go through the mind
-                maps, explore every detail and, if you feel it&apos;s not what you expected, ask for a full refund with no
-                hassle.
+                Compre com total tranquilidade. Depois da compra confirmada, você tem 30 dias para ler a cartilha, ver
+                cada detalhe e, se sentir que não é o que esperava, pedir o reembolso total, sem burocracia.
               </p>
-              <CtaButton href={CHECKOUT_URL} className="sm:min-w-[320px]">
-                Buy now
+              <CtaButton href="#offer" className="sm:min-w-[320px]">
+                Comprar agora
               </CtaButton>
             </div>
           </Container>
@@ -706,7 +684,7 @@ export default function ShopeePage() {
             <div className="text-center">
               <p className={`${display} clay-text-gradient text-7xl font-black leading-none tracking-tight sm:text-8xl`}>FAQ</p>
               <h2 className={`${display} mt-3 text-2xl font-black tracking-wide sp-title--dark sm:text-3xl`}>
-                FREQUENTLY ASKED QUESTIONS
+                PERGUNTAS FREQUENTES
               </h2>
             </div>
 
@@ -732,8 +710,8 @@ export default function ShopeePage() {
             </div>
 
             <div className="mt-12 flex justify-center">
-              <CtaButton href={CHECKOUT_URL} className="sm:min-w-[320px]">
-                Buy now
+              <CtaButton href="#offer" className="sm:min-w-[320px]">
+                Comprar agora
               </CtaButton>
             </div>
           </Container>
@@ -743,21 +721,105 @@ export default function ShopeePage() {
         <footer className="pb-6 text-center text-[13px]">
           <div className="font-medium">
             <a href="link-para-politica.html" className="mx-2.5 text-sp-link hover:underline">
-              Privacy Policy
+              Política de Privacidade
             </a>
             <span className="text-muted">|</span>
             <a href="link-para-termos.html" className="mx-2.5 text-sp-link hover:underline">
-              Terms of Service
+              Termos de Uso
             </a>
           </div>
           <p className="mx-auto mt-4 max-w-[560px] px-4 text-muted">
-            This product is not affiliated with or endorsed by LightBurn Software. LightBurn is a trademark of its
-            respective owner.
+            Este produto não é afiliado, patrocinado ou endossado pela Shopee. Shopee é uma marca registrada de seu
+            respectivo titular.
           </p>
-          <p className="mt-2 text-muted">© 2026 All rights reserved.</p>
+          <p className="mt-2 text-muted">© 2026 Todos os direitos reservados.</p>
         </footer>
       </main>
     </div>
+  );
+}
+
+/** Card de plano: mesma estrutura no Premium e no Basic; muda selo, itens, preços e checkout. */
+function OfferCard({
+  badge,
+  tier,
+  items,
+  oldPrice,
+  price,
+  href,
+  className = "",
+}: {
+  badge?: string;
+  tier: string;
+  items: OfferItem[];
+  oldPrice: string;
+  price: string;
+  href: string;
+  className?: string;
+}) {
+  return (
+    <div className={`relative ${className}`}>
+      {badge && (
+        <div className="absolute -top-5 left-1/2 z-20 -translate-x-1/2">
+          <span
+            className={`${display} clay-orb inline-flex items-center gap-1.5 whitespace-nowrap rounded-full bg-gradient-to-br from-white to-sp-cream px-5 py-2.5 text-sm font-black tracking-wide text-sp-600`}
+          >
+            {badge}
+          </span>
+        </div>
+      )}
+
+      <div className="sp-slab sp-slab--offer relative overflow-hidden rounded-[48px] px-5 pb-10 pt-14 text-white sm:px-10">
+        <div className="relative z-10 flex flex-col items-center text-center">
+          <h3 className={`${display} text-3xl font-black leading-[1.15] tracking-tight sm:text-4xl sp-title--dark`}>
+            {MAIN_PRODUCT.toUpperCase()}
+            <br />
+            <Mark on="light">{tier}</Mark>
+          </h3>
+
+          <MainMockup className="mt-8" />
+
+          <div className="mt-8 w-full text-left">
+            <ul className="flex flex-col gap-3">
+              {items.map((item) => (
+                <li key={item.text} className="flex items-start gap-3">
+                  {item.included ? <CheckOrb size="sm" /> : <XOrb />}
+                  <span
+                    className={`pt-0.5 text-[15px] font-bold leading-snug ${
+                      item.included ? "text-white" : "text-white/70 line-through decoration-2"
+                    }`}
+                  >
+                    {item.text}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <p className={`${display} mt-10 text-xl font-extrabold text-white/75 line-through decoration-2`}>{oldPrice}</p>
+          <p className={`${display} mt-1 text-2xl font-black tracking-wide`}>SÓ HOJE</p>
+          <p className={`${display} mt-1 whitespace-nowrap text-7xl font-black leading-none tracking-tight sm:text-8xl`}>
+            <span className="mr-1 align-top text-3xl sm:text-4xl">R$</span>
+            {price}
+          </p>
+          <p className="mt-6 text-sm font-bold text-white/90">Pagamento único</p>
+
+          <CtaButton href={href} className="mt-6 sm:min-w-[320px]">
+            Comprar agora
+          </CtaButton>
+          <p className="mt-3 text-xs font-bold uppercase tracking-widest text-white/85">Pagamento 100% seguro</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/** Item que não vem no plano: X branco em círculo vermelho. */
+function XOrb() {
+  return (
+    <span className="clay-orb inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-red-600 text-white">
+      <X className="h-3.5 w-3.5" strokeWidth={3.5} />
+    </span>
   );
 }
 
@@ -769,9 +831,9 @@ function BonusPrice({ price }: { price: string }) {
       </span>
       <span className={`${display} text-lg font-extrabold text-white/75 line-through decoration-2`}>{price}</span>
       <span
-        className={`${display} clay-orb inline-flex items-center rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 px-5 py-1.5 text-base font-black tracking-widest text-white`}
+        className={`${display} clay-orb inline-flex items-center rounded-full bg-sp-go px-5 py-1.5 text-base font-black tracking-widest text-white`}
       >
-        FREE
+        GRÁTIS
       </span>
     </div>
   );

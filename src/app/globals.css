@@ -23,6 +23,9 @@
   --sp-ink: #090d16; /* preto profundo das headlines */
   --sp-ink-soft: #3b3f4a;
   --sp-link: #c2391c;
+  /* Verde dos botões e dos checks (cor do botão de referência). */
+  --sp-go: #0b8601;
+  --sp-go-dark: #097001;
 
   --clay-success: #10b981;
   --clay-success-dark: #059669;
@@ -42,16 +45,6 @@
     0 16px 36px rgba(120, 55, 30, 0.14),
     0 3px 8px rgba(120, 55, 30, 0.07),
     inset 0 -4px 10px rgba(120, 55, 30, 0.04);
-
-  /* 3. Clay Button */
-  --shadow-clay-button:
-    0 10px 22px rgba(5, 120, 85, 0.3),
-    inset 0 2px 4px rgba(255, 255, 255, 0.18),
-    inset 0 -4px 8px rgba(0, 0, 0, 0.12);
-  --shadow-clay-button-hover:
-    0 14px 28px rgba(5, 120, 85, 0.36),
-    inset 0 2px 4px rgba(255, 255, 255, 0.18),
-    inset 0 -4px 8px rgba(0, 0, 0, 0.12);
 
   /* 4. Clay Pressed (rebaixado) */
   --shadow-clay-pressed:
@@ -84,6 +77,7 @@
   --color-sp-ink: var(--sp-ink);
   --color-sp-ink-soft: var(--sp-ink-soft);
   --color-sp-link: var(--sp-link);
+  --color-sp-go: var(--sp-go);
   --font-display: "Nunito", sans-serif;
   --font-body: "DM Sans", sans-serif;
 }
@@ -259,26 +253,21 @@ img {
 
 /* ---------- Botão ---------- */
 
+/* Botão chapado: verde sólido, cantos de 6px, sem sombra (modelo enviado pelo Luan). */
 .clay-button {
-  background: linear-gradient(180deg, #10b981 0%, var(--clay-success-dark) 100%);
+  background: var(--sp-go);
   color: #fff;
-  box-shadow: var(--shadow-clay-button);
-  transition: transform 200ms ease, box-shadow 200ms ease;
+  transition: background-color 200ms ease, transform 150ms ease;
 }
 .clay-button:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-clay-button-hover);
+  background: var(--sp-go-dark);
 }
 .clay-button:active {
-  transform: scale(0.92);
-  box-shadow:
-    inset 0 4px 10px rgba(4, 90, 65, 0.45);
+  transform: scale(0.97);
 }
 .clay-button:focus-visible {
-  outline: none;
-  box-shadow:
-    var(--shadow-clay-button),
-    0 0 0 4px rgba(238, 77, 45, 0.35);
+  outline: 3px solid var(--sp-ink);
+  outline-offset: 2px;
 }
 
 /* ---------- Texto ---------- */
