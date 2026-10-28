@@ -263,21 +263,25 @@ img {
   color: var(--sp-white);
 }
 .sp-price-tag-old {
-  font-size: 1.25rem;
-  font-weight: 800;
+  font-size: 1.75rem;
+  font-weight: 900;
 }
+/* Vermelho com contorno branco (igual ao preço novo) para não sumir no laranja. */
 .sp-price-tag-old s {
+  color: var(--sp-red);
+  -webkit-text-stroke: 0.07em var(--sp-white);
+  paint-order: stroke fill;
   text-decoration-color: var(--sp-red);
-  text-decoration-thickness: 3px;
+  text-decoration-thickness: 4px;
 }
 .sp-price-tag-by {
-  font-size: 0.875rem;
+  font-size: 1.125rem;
   font-weight: 800;
   letter-spacing: 0.22em;
 }
 /* Verde do botão; contorno branco e carimbo preto para destacar sobre o laranja. */
 .sp-price-tag-new {
-  font-size: clamp(3.5rem, 16vw, 5rem);
+  font-size: clamp(4.5rem, 21vw, 6.5rem);
   font-weight: 900;
   line-height: 1;
   letter-spacing: -0.02em;
