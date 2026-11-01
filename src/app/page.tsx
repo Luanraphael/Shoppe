@@ -1,7 +1,6 @@
 import Image from "next/image";
 import type { ReactNode } from "react";
 import ShowcaseSlider from "./showcase-slider";
-import TodayLabel from "./today-label";
 import { Check, ChevronsDown, Gift, Minus, Plus, ShieldCheck, X } from "lucide-react";
 
 const IMG = "/assets";
@@ -18,7 +17,7 @@ const MAIN_PRODUCT_FULL = "Cartilha Prática: Como Vender na Shopee, do Zero à 
 const MAIN_MOCKUP = { img: "mockup-cartilha-shopee.png", w: 1306, h: 1205 };
 const PHONE_MOCKUP = { img: "mockup-smartphone-notificacoes.png", w: 1306, h: 1205 };
 
-const HERO_BULLETS = ["Acesso vitalício", "Envio imediato por e-mail e WhatsApp", "Material em PDF (Pronto para Impressão)"];
+const HERO_BULLETS = ["Acesso vitalício", "Envio imediato por e-mail e WhatsApp", "Garantia de 7 dias"];
 
 const INCLUDES = [
   "Prepare tudo o que precisa para começar a vender na Shopee, entendendo como a plataforma funciona, como os clientes compram e quais são seus primeiros passos.",
@@ -101,6 +100,23 @@ const BONUSES = [
   },
 ];
 
+
+const WHY = [
+  "Um caminho organizado do zero à primeira venda, para você saber exatamente o que fazer em cada etapa, sem depender de informações soltas.",
+  "Telas e funcionalidades da Shopee ilustradas, para o que você vê na página ser o mesmo que você vê no seu celular ou computador.",
+  "Exemplos práticos e cálculos prontos, para você entender quanto cobrar e quanto realmente sobra em cada venda.",
+  "Explicações curtas, simples e diretas, sem vídeos longos para assistir e sem teoria que você nunca vai usar.",
+  "Atividades e checklists ao final das lições, para você aplicar enquanto aprende e avançar com segurança até a primeira venda.",
+];
+
+const FOR_WHOM = [
+  "Quem quer começar a vender na Shopee, mas não sabe por onde começar.",
+  "Quem quer uma renda extra vendendo pela internet, mesmo sem experiência.",
+  "Quem já tentou vender, mas se perdeu entre tarifas, anúncios e envios.",
+  "Quem tem dúvida sobre quais produtos vender e onde encontrar fornecedores.",
+  "Quem aprende melhor vendo o passo a passo do que assistindo aulas longas.",
+];
+
 type OfferItem = { text: string; included: boolean };
 
 const BONUS_TITLES = [FIRST_BONUS.title, ...BONUSES.map((b) => b.title)];
@@ -165,6 +181,16 @@ const FAQ: { q: string; a: ReactNode }[] = [
     ),
   },
   {
+    q: "A cartilha garante que eu vou vender?",
+    a: (
+      <>
+        Nenhum material pode garantir vendas, porque o resultado depende da sua aplicação. O que a cartilha entrega é{" "}
+        <strong>um caminho claro e organizado</strong>, com tudo o que você precisa fazer em cada etapa para chegar
+        preparado à sua primeira venda.
+      </>
+    ),
+  },
+  {
     q: "Tem garantia?",
     a: (
       <>
@@ -192,7 +218,7 @@ const FAQ: { q: string; a: ReactNode }[] = [
 /* Peças de clay                                                       */
 /* ------------------------------------------------------------------ */
 
-type SlabVariant = "hero" | "inside" | "guarantee";
+type SlabVariant = "hero" | "inside" | "why" | "guarantee";
 
 /** Seção de identidade Shopee: topo branco que se abre em laranja (composição própria por variante). */
 function ShopeeSlab({
@@ -378,10 +404,9 @@ export default function ShopeePage() {
             </div>
 
             <p className="mt-8 text-lg font-medium leading-relaxed text-white/95 sm:text-xl">
-              Você terá em mãos todo o <SoftMark>passo a passo completo</SoftMark>, desde a criação da sua conta até a
-              publicação dos anúncios, <strong className="font-extrabold">estratégias usadas pelos top vendedores</strong>,
-              lista dos produtos mais vendidos atualizada toda semana, catálogo de fornecedores, dicas de embalagem e envio
-              e <SoftMark>5 bônus exclusivos</SoftMark> para acelerar ainda mais as suas vendas!
+              Conheça a <SoftMark>Cartilha Prática</SoftMark>, um passo a passo visual e organizado, com{" "}
+              <strong className="font-extrabold">telas da Shopee ilustradas</strong>, exemplos e cálculos que mostram{" "}
+              <SoftMark>o que fazer em cada etapa</SoftMark>, da criação da sua loja até a sua primeira venda.
             </p>
 
             <CheckList items={HERO_BULLETS} onRed className="mt-8 w-full text-left" />
@@ -396,8 +421,12 @@ export default function ShopeePage() {
         <LightSection>
           <Container>
             <h2 className={`${display} text-center text-3xl font-black leading-[1.1] tracking-tight sp-title--dark sm:text-4xl md:text-5xl`}>
-              Veja tudo o que você terá em mãos para <Mark on="light">começar a vender na Shopee</Mark>
+              Veja tudo o que você vai aprender para <Mark on="light">começar a vender na Shopee!</Mark>
             </h2>
+            <p className="mt-6 text-center text-lg font-medium leading-relaxed text-sp-ink-soft">
+              Aprenda o passo a passo, desde a criação da sua loja até a preparação dos seus primeiros anúncios, vendas
+              e envios, mesmo que você esteja começando do absoluto zero.
+            </p>
 
             {/* Celular no meio da lista: pausa visual entre os dois blocos de itens. */}
             <CheckList items={INCLUDES.slice(0, 7)} className="mt-10" />
@@ -477,9 +506,7 @@ export default function ShopeePage() {
           <Container className="mt-10 sm:mt-12">
             <div className="clay-red-card flex flex-col items-center gap-6 rounded-[48px] px-6 py-10 text-center">
               <h2 className={`${display} text-3xl font-black leading-[1.15] tracking-tight text-white sm:text-4xl md:text-5xl`}>
-                GARANTINDO <Mark on="orange">
-                  <TodayLabel />
-                </Mark> VOCÊ TAMBÉM RECEBE:
+                GARANTINDO <Mark on="orange">HOJE</Mark> VOCÊ TAMBÉM RECEBE
               </h2>
               <IconOrb tone="white">
                 <ChevronsDown className="h-8 w-8" strokeWidth={3} />
@@ -538,6 +565,29 @@ export default function ShopeePage() {
           </Container>
         </ShopeeSlab>
 
+        {/* 8 · Por quê? + Para quem? */}
+        <ShopeeSlab variant="why">
+          <Container>
+            <SectionTitle tone="dark">
+              Por que a <Mark on="light">{MAIN_PRODUCT}</Mark> vai ser o seu passo a passo até a primeira venda
+            </SectionTitle>
+
+            <MainMockup className="mt-10" />
+
+            <div className="clay-red-card mt-12 rounded-[32px] p-6 sm:p-8">
+              <CheckList items={WHY} onRed />
+            </div>
+
+            <SectionTitle tone="light" className="mt-14">
+              Para quem é a cartilha?
+            </SectionTitle>
+
+            <div className="clay-red-card mt-10 rounded-[32px] p-6 sm:p-8">
+              <CheckList items={FOR_WHOM} onRed />
+            </div>
+          </Container>
+        </ShopeeSlab>
+
         {/* 9 · Oferta */}
         <LightSection id="offer" className="scroll-mt-20">
           <Container>
@@ -553,7 +603,7 @@ export default function ShopeePage() {
               tier="PACOTE PREMIUM"
               items={PREMIUM_ITEMS}
               oldPrice="DE R$ 97,00"
-              price="37,00"
+              price="19,90"
               href={CHECKOUT_PREMIUM}
               className="mt-14"
             />
@@ -619,7 +669,7 @@ export default function ShopeePage() {
             </div>
 
             <div className="mt-12 flex justify-center">
-              <CtaButton href={CHECKOUT_PREMIUM} className="sm:min-w-[320px]">
+              <CtaButton href="#offer" className="sm:min-w-[320px]">
                 Comprar agora
               </CtaButton>
             </div>
