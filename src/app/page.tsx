@@ -1,12 +1,20 @@
 import Image from "next/image";
 import type { ReactNode } from "react";
 import ShowcaseSlider from "./showcase-slider";
-import { Check, ChevronsDown, Gift, Minus, Plus, ShieldCheck, X } from "lucide-react";
+import { Check, ChevronsDown, Gift, Minus, Plus, ShieldCheck } from "lucide-react";
 
 const IMG = "/assets";
-const CHECKOUT_PREMIUM = "https://pay.cakto.com.br/jyamu9n";
-const CHECKOUT_BASIC = "https://pay.cakto.com.br/dmfa9gr_1252563";
+// Preço e checkout desta página (cada página tem os seus). OLD_PRICE null = sem preço riscado.
+const PRICE = "37,00";
+const OLD_PRICE: string | null = "97,00";
+const CHECKOUT = "https://pay.wiapy.com/IILj9IYYt-UG";
 const display = "font-display";
+
+/** "97,00" e "37,00" → 62 */
+function discountPercent(from: string, to: string) {
+  const n = (v: string) => Number(v.replace(",", "."));
+  return Math.round((1 - n(to) / n(from)) * 100);
+}
 
 /* ------------------------------------------------------------------ */
 /* Conteúdo                                                            */
@@ -117,11 +125,9 @@ const FOR_WHOM = [
   "Quem aprende melhor vendo o passo a passo do que assistindo aulas longas.",
 ];
 
-type OfferItem = { text: string; included: boolean };
-
 const BONUS_TITLES = [FIRST_BONUS.title, ...BONUSES.map((b) => b.title)];
 
-const PREMIUM_ITEMS: OfferItem[] = [
+const PREMIUM_ITEMS = [
   MAIN_PRODUCT_FULL,
   "13 módulos que acompanham toda a jornada, da preparação ao envio",
   "Telas da Shopee ilustradas, exemplos práticos e cálculos",
@@ -131,12 +137,6 @@ const PREMIUM_ITEMS: OfferItem[] = [
   "Acesso pelo celular, tablet ou computador",
   "Acesso vitalício",
   "Envio imediato por e-mail e WhatsApp",
-].map((text) => ({ text, included: true }));
-
-// Basic: só o material principal; os 5 bônus aparecem riscados, com X vermelho.
-const BASIC_ITEMS: OfferItem[] = [
-  ...[MAIN_PRODUCT_FULL, "Acesso vitalício", "Garantia de 7 dias"].map((text) => ({ text, included: true })),
-  ...BONUS_TITLES.map((t) => ({ text: `Bônus: ${t}`, included: false })),
 ];
 
 const FAQ: { q: string; a: ReactNode }[] = [
@@ -364,7 +364,7 @@ export default function ShopeePage() {
         <div
           className={`${display} flex h-11 w-full items-center justify-center gap-1.5 sp-topbar px-3 text-center text-[13px] font-extrabold text-white min-[400px]:text-[15px] sm:tracking-wide`}
         >
-          Desconto de 67% apenas
+          {OLD_PRICE ? `Desconto de ${discountPercent(OLD_PRICE, PRICE)}% apenas` : "Oferta especial apenas"}
           <span className="animate-clay-blink rounded-full bg-white px-2.5 py-0.5 text-sp-600 underline underline-offset-2">
             HOJE
           </span>
@@ -392,14 +392,17 @@ export default function ShopeePage() {
 
             <MainMockup priority className="mt-6" />
 
-            {/* Âncora de preço já na primeira dobra (o Basic de R$ 10 é a porta de entrada). */}
+            {/* Âncora de preço já na primeira dobra. */}
             <div className="sp-price-tag mt-6">
-              <span className="sp-price-tag-old">
-                DE <s>R$ 97,00</s>
-              </span>
+              {OLD_PRICE && (
+                <span className="sp-price-tag-old">
+                  DE <s>R$ {OLD_PRICE}</s>
+                </span>
+              )}
               <span className="sp-price-tag-by">POR APENAS</span>
               <span className={`${display} sp-price-tag-new`}>
-                <span className="sp-price-tag-cur">R$</span>10,00
+                <span className="sp-price-tag-cur">R$</span>
+                {PRICE}
               </span>
             </div>
 
@@ -602,18 +605,10 @@ export default function ShopeePage() {
               badge="🌟 Mais Vendido"
               tier="PACOTE PREMIUM"
               items={PREMIUM_ITEMS}
-              oldPrice="DE R$ 97,00"
-              price="19,90"
-              href={CHECKOUT_PREMIUM}
+              oldPrice={OLD_PRICE}
+              price={PRICE}
+              href={CHECKOUT}
               className="mt-14"
-            />
-            <OfferCard
-              tier="PACOTE BÁSICO"
-              items={BASIC_ITEMS}
-              oldPrice="DE R$ 47,00"
-              price="10,00"
-              href={CHECKOUT_BASIC}
-              className="mt-12"
             />
           </Container>
         </LightSection>
@@ -630,7 +625,7 @@ export default function ShopeePage() {
                 Compre com total tranquilidade. Depois da compra confirmada, você tem 7 dias para ler a cartilha, ver
                 cada detalhe e, se sentir que não é o que esperava, pedir o reembolso total, sem burocracia.
               </p>
-              <CtaButton href={CHECKOUT_PREMIUM} className="sm:min-w-[320px]">
+              <CtaButton href={CHECKOUT} className="sm:min-w-[320px]">
                 Comprar agora
               </CtaButton>
             </div>
@@ -698,7 +693,7 @@ export default function ShopeePage() {
   );
 }
 
-/** Card de plano: mesma estrutura no Premium e no Basic; muda selo, itens, preços e checkout. */
+/** Card do plano Premium. */
 function OfferCard({
   badge,
   tier,
@@ -710,8 +705,8 @@ function OfferCard({
 }: {
   badge?: string;
   tier: string;
-  items: OfferItem[];
-  oldPrice: string;
+  items: string[];
+  oldPrice: string | null;
   price: string;
   href: string;
   className?: string;
@@ -741,22 +736,20 @@ function OfferCard({
           <div className="mt-8 w-full text-left">
             <ul className="flex flex-col gap-3">
               {items.map((item) => (
-                <li key={item.text} className="flex items-start gap-3">
-                  {item.included ? <CheckOrb size="sm" /> : <XOrb />}
-                  <span
-                    className={`pt-0.5 text-[15px] font-bold leading-snug ${
-                      item.included ? "text-white" : "text-white/70 line-through decoration-2"
-                    }`}
-                  >
-                    {item.text}
-                  </span>
+                <li key={item} className="flex items-start gap-3">
+                  <CheckOrb size="sm" />
+                  <span className="pt-0.5 text-[15px] font-bold leading-snug text-white">{item}</span>
                 </li>
               ))}
             </ul>
           </div>
 
-          <p className={`${display} mt-10 text-xl font-extrabold text-white/75 line-through decoration-2`}>{oldPrice}</p>
-          <p className={`${display} mt-1 text-2xl font-black tracking-wide`}>SÓ HOJE</p>
+          {oldPrice && (
+            <p className={`${display} mt-10 text-xl font-extrabold text-white/75 line-through decoration-2`}>
+              DE R$ {oldPrice}
+            </p>
+          )}
+          <p className={`${display} ${oldPrice ? "mt-1" : "mt-10"} text-2xl font-black tracking-wide`}>SÓ HOJE</p>
           <p className={`${display} mt-1 whitespace-nowrap text-7xl font-black leading-none tracking-tight sm:text-8xl`}>
             <span className="mr-1 align-top text-3xl sm:text-4xl">R$</span>
             {price}
@@ -770,15 +763,6 @@ function OfferCard({
         </div>
       </div>
     </div>
-  );
-}
-
-/** Item que não vem no plano: X branco em círculo vermelho. */
-function XOrb() {
-  return (
-    <span className="clay-orb inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-red-600 text-white">
-      <X className="h-3.5 w-3.5" strokeWidth={3.5} />
-    </span>
   );
 }
 
